@@ -1,6 +1,9 @@
+
 import { Link } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar(){
+    const {user, logout} = useAuth();
      return <nav className="navbar">
         <div className="navbar-container">
         <Link to='/' className="navbar-brand">
@@ -11,7 +14,8 @@ export default function Navbar(){
             <Link to="/checkout"  className="navbar-link">Cart</Link>
         </div>
         <div className="navbar-auth"> 
-            <div className="navbar-auth-links">
+        { 
+           !user ?  ( <div className="navbar-auth-links">
                 <Link to="/auth" className="btn btn-seecondary">
                 Login
                 </Link>
@@ -19,7 +23,14 @@ export default function Navbar(){
                 Signup
                 </Link>
 
-            </div>
+            </div>) : (
+                <div className="navbar-user">
+                    <span className="navbar-greeting">Hello, {user.email}</span>
+                    <button className="btn btn-secondary" onClick={logout}>Logout</button>
+
+                </div>
+            )
+        }  
         </div>
 
         </div>
