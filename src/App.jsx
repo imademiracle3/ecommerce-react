@@ -8,16 +8,21 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import Home from './pages/Home'
 import Auth from './pages/Auth'
-import Checkout from './pages/ProductDetails'
+import Checkout from './pages/Checkout'
 import Navbar from './components/Navbar'
 import AuthProvider from './context/AuthContext'
 import ProductDetails from './pages/ProductDetails'
+import CartProvider from './context/CartContext'
+
 
 function App() {
   
 
   return (
     <AuthProvider>
+      <CartProvider>
+
+     
         <div className='app'>
       <Navbar/>
       <Routes>
@@ -28,6 +33,7 @@ function App() {
       </Routes>
 
     </div>
+     </CartProvider>
 
     </AuthProvider>
   
